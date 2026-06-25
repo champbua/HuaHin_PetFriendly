@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cha-am Pocket Guide · Eat &amp; Coffee near VALA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e7eee9;
+    --surface:#ffffff;
+    --surface-2:#f3f7f4;
+    --ink:#16282b;
+    --ink-soft:#536468;
+    --line:#d4e0d9;
+    --eat:#14695a;
+    --eat-soft:#e0efe9;
+    --sip:#a9621f;
+    --sip-soft:#f6e9d9;
+    --pet:#c9583a;
+    --pet-soft:#fae4dc;
+    --ok:#2f7d52;
+    --ok-soft:#e0f0e6;
+    --gold:#bf9a2e;
+    --shadow:0 1px 2px rgba(20,40,43,.05),0 8px 24px rgba(20,40,43,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:0 0 64px;
+  }
+  .wrap{max-width:540px;margin:0 auto;padding:0 16px}
+
+  /* ---- header ---- */
+  header{padding:30px 0 14px}
+  .eyebrow{
+    font-family:"DM Mono",monospace;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--eat);
+  }
+  h1{
+    font-family:"Fraunces",serif;
+    font-weight:500;
+    font-size:34px;line-height:1.06;
+    letter-spacing:-.01em;
+    margin:8px 0 6px;
+  }
+  h1 em{font-style:italic;color:var(--sip)}
+  .sub{color:var(--ink-soft);font-size:14.5px;max-width:34ch}
+
+  /* ---- anchor (VALA) ---- */
+  .anchor{
+    margin-top:18px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px 16px 14px;
+    box-shadow:var(--shadow);
+  }
+  .anchor .pin{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);
+  }
+  .anchor .pin b{color:var(--ink);font-weight:500}
+  .anchor h2{
+    font-family:"Fraunces",serif;font-weight:600;font-size:20px;
+    margin:6px 0 8px;letter-spacing:-.01em;
+  }
+  .compass{display:flex;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
+  .compass span{
+    flex:1 1 0;min-width:128px;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:10px;
+    padding:8px 10px;font-size:12.5px;color:var(--ink-soft);
+  }
+  .compass span b{color:var(--ink);font-weight:600}
+  .arrow{font-family:"DM Mono",monospace;color:var(--eat);font-weight:500}
+  .note{
+    margin-top:10px;font-size:12.5px;color:var(--ink-soft);
+    border-top:1px dashed var(--line);padding-top:10px;
+  }
+  .note b{color:var(--ink);font-weight:600}
+
+  /* ---- filter ---- */
+  .filterbar{
+    position:sticky;top:0;z-index:5;
+    background:linear-gradient(var(--bg) 70%,rgba(231,238,233,0));
+    padding:14px 0 8px;margin-top:8px;
+  }
+  .filters{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;border:1px solid var(--line);background:var(--surface);
+    color:var(--ink-soft);border-radius:999px;padding:7px 13px;
+    font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip:focus-visible{outline:2px solid var(--eat);outline-offset:2px}
+
+  /* ---- sections ---- */
+  .section{margin-top:18px}
+  .section-head{
+    display:flex;align-items:baseline;gap:10px;
+    padding:2px 2px 12px;
+  }
+  .section-head .tag{
+    font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;
+    padding:4px 9px;border-radius:7px;
+  }
+  .section--eat .tag{color:var(--eat);background:var(--eat-soft)}
+  .section--sip .tag{color:var(--sip);background:var(--sip-soft)}
+  .section-head h3{font-family:"Fraunces",serif;font-weight:500;font-size:21px}
+  .section-head .count{margin-left:auto;font-size:12px;color:var(--ink-soft);font-family:"DM Mono",monospace}
+
+  /* ---- card ---- */
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:15px 15px 13px;margin-bottom:11px;box-shadow:var(--shadow);
+    position:relative;overflow:hidden;
+    animation:rise .4s ease both;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px}
+  .section--eat .card::before{background:var(--eat)}
+  .section--sip .card::before{background:var(--sip)}
+  .card .top{display:flex;align-items:flex-start;gap:8px}
+  .card h4{
+    font-family:"Fraunces",serif;font-weight:600;font-size:18px;line-height:1.15;
+    letter-spacing:-.01em;flex:1;
+  }
+  .mine{
+    flex:0 0 auto;font-size:10px;font-family:"DM Mono",monospace;letter-spacing:.06em;
+    color:var(--gold);border:1px solid var(--gold);border-radius:6px;
+    padding:3px 6px;text-transform:uppercase;white-space:nowrap;margin-top:2px;
+  }
+  .cuisine{font-size:12px;color:var(--ink-soft);margin:3px 0 7px;font-weight:500}
+  .known{font-size:13.5px;color:var(--ink);margin-bottom:11px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .pill{
+    font-size:11.5px;border-radius:7px;padding:4px 8px;font-weight:500;
+    display:inline-flex;align-items:center;gap:5px;line-height:1;
+  }
+  .dist{background:var(--surface-2);border:1px solid var(--line);color:var(--ink);font-family:"DM Mono",monospace}
+  .dist .dir{color:var(--eat);font-weight:500}
+  .dist.walk .dir{color:var(--gold)}
+  .pet-confirmed{background:var(--ok-soft);color:var(--ok)}
+  .pet-call{background:var(--pet-soft);color:var(--pet)}
+  .pet-take{background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--line)}
+  .hours{background:transparent;color:var(--ink-soft);padding-left:0}
+  .actions{display:flex;gap:8px}
+  .btn{
+    flex:1;text-align:center;text-decoration:none;border-radius:10px;
+    padding:10px;font-size:13.5px;font-weight:600;letter-spacing:.01em;
+    transition:transform .08s,filter .15s;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-map{background:var(--ink);color:#fff}
+  .btn-call{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+  .btn:focus-visible{outline:2px solid var(--eat);outline-offset:2px}
+
+  .empty{display:none;color:var(--ink-soft);font-size:13.5px;padding:6px 2px 14px}
+
+  footer{margin-top:26px;text-align:center;color:var(--ink-soft);font-size:11.5px;font-family:"DM Mono",monospace;letter-spacing:.04em}
+
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.card{animation:none}.btn:active{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Cha-am · Hua Hin border</div>
+    <h1>Pocket Guide<br><em>Eat &amp; Coffee</em> near VALA</h1>
+    <p class="sub">A weekend shortlist for you, Gus &amp; Soba — Fri–Sun, 26–28 June. Sorted nearest-first from the hotel.</p>
+
+    <div class="anchor">
+      <span class="pin">◎ You are here · <b>VALA Hua Hin — Nu Chapter</b></span>
+      <h2>849/21 Phetkasem Rd</h2>
+      <div class="compass">
+        <span><span class="arrow">↑ N</span> &nbsp;toward <b>Cha-am town</b> — the coffee cluster &amp; beach seafood</span>
+        <span><span class="arrow">↓ S</span> &nbsp;toward <b>Hua Hin</b> — beach clubs &amp; your central go-tos</span>
+      </div>
+      <p class="note"><b>Two June notes:</b> the beach in front can recede at high tide in green season — check before counting on sand seating. Sunset is ~18:45, so aim beachfront dinners for a 17:30–18:00 arrival.</p>
+    </div>
+  </header>
+
+  <div class="filterbar">
+    <div class="filters" role="group" aria-label="Filter by distance">
+      <button class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="walk" aria-pressed="false">Walkable</button>
+      <button class="chip" data-filter="N" aria-pressed="false">↑ North</button>
+      <button class="chip" data-filter="S" aria-pressed="false">↓ South</button>
+    </div>
+  </div>
+
+  <section class="section section--eat" id="sec-eat">
+    <div class="section-head">
+      <span class="tag">Eat</span>
+      <h3>Restaurants</h3>
+      <span class="count" data-count="eat"></span>
+    </div>
+    <div class="list" id="list-eat"></div>
+    <p class="empty" data-empty="eat">No restaurants in this filter.</p>
+  </section>
+
+  <section class="section section--sip" id="sec-sip">
+    <div class="section-head">
+      <span class="tag">Sip</span>
+      <h3>Coffee</h3>
+      <span class="count" data-count="sip"></span>
+    </div>
+    <div class="list" id="list-sip"></div>
+    <p class="empty" data-empty="sip">No cafés in this filter.</p>
+  </section>
+
+  <footer>Curated for VALA · tap a pin to open Google Maps</footer>
+</div>
+
+<script>
+const PLACES=[
+  // ---- EAT ---- (sorted nearest first)
+  {g:"eat",name:"CASA MARE Café & Restaurant",cuisine:"Italian · beachfront café-restaurant",known:"Sea-view design, ox tongue, cocktails & fresh juices — a sunset-drinks spot.",pet:["confirmed","Patio dog-friendly"],km:0.3,dir:"walk",hours:"Fri–Sun 11:30–21:30 (closed Tue–Wed)",lat:12.7278,lng:99.9639,pid:"ChIJNyGzywkD_TARZkB8eOCn8Jc",phone:"+66626905588"},
+  {g:"eat",name:"ISEA Beach Bar & Restaurant",cuisine:"Thai & Western · all-day beachfront",known:"Open-air deck on the water, dinner on the sand, polished service. (Veranda Resort)",pet:["call","Call ahead for dogs"],km:1.7,dir:"N",min:5,hours:"Daily 11:00–23:00",lat:12.7404,lng:99.9661,pid:"ChIJ4ZtjAL0D_TARn8gkHh3FPKI",phone:"+6632709000"},
+  {g:"eat",name:"Nómada Open Fire Grill",cuisine:"South American · open-fire grill",known:"Wood-fired meats & seafood, sunset beachfront at Dusit Thani.",pet:["call","Call ahead for dogs"],km:8,dir:"S",min:11,hours:"Daily 12:00–22:00 (Fri–Sat to 24:00)",lat:12.6569,lng:99.9575,pid:"ChIJx42CrRUB_TARUrAdOC-11zc",phone:"+6632520009"},
+  {g:"eat",name:"View Talay",cuisine:"Thai seafood",known:"Crab fried rice, Surat Thani oysters, big flavour for the price.",pet:["call","Open-air · call ahead"],km:12,dir:"N",min:16,hours:"Wed–Mon 11:00–20:00 (closed Tue)",mine:true,lat:12.8228,lng:99.9926,pid:"ChIJF1IeE2Ab_TARY8wvjcx5A9A",phone:"+66875324145"},
+  {g:"eat",name:"Laciana By The Sea",cuisine:"Italian · seafood",known:"Beachfront pizza (try the truffle) and a homey Mediterranean vibe.",pet:["call","Open-air · call ahead"],km:12,dir:"S",min:17,hours:"Daily 11:30–22:00",mine:true,lat:12.6235,lng:99.9547,pid:"ChIJf1UjnIMA_TARr2z-7NqJrK4",phone:"+66959365393"},
+  {g:"eat",name:"Beach Society",cuisine:"Italian · beach club",known:"SO Sofitel beachfront, craft cocktails, relaxed lounge dining.",pet:["confirmed","Dog-friendly"],km:14,dir:"N",min:18,hours:"Daily, lunch–late",lat:12.8349,lng:99.9984,pid:"ChIJl2QMeXsb_TARdkKgvuQgCms",phone:"+6632709555"},
+  {g:"eat",name:"Tree House Café",cuisine:"Pasta · local craft beer",known:"Pesto-salmon pasta and a genuinely good Thai craft-beer list.",pet:["call","Small & homey · call ahead"],km:16,dir:"S",min:20,hours:"Thu–Tue 09:00–18:00 (closed Wed)",lat:12.5960,lng:99.9524,pid:"ChIJvfoK_F2q_TARy3_aRjnqNt4",phone:"+66842542265"},
+  {g:"eat",name:"Peak Bar & Restaurant",cuisine:"Thai & Japanese · seafood",known:"Fresh Thai-fish sashimi, quiet beach, live music — top new dinner pick.",pet:["confirmed","Dog-friendly"],km:20,dir:"N",min:25,hours:"Daily 12:00–21:00 (Fri–Sat to 22:00)",lat:12.8755,lng:100.0189,pid:"ChIJY5oqlCEb_TARkbd0DrZO1IM",phone:"+66812349923"},
+
+  // ---- SIP ---- (sorted nearest first)
+  {g:"sip",name:"Delight Coffee & Smoothies",cuisine:"Coffee & smoothies",known:"Barista-run, coconut-served coffee, open late — the easiest takeaway run.",pet:["take","Takeaway · open late"],km:0.2,dir:"walk",hours:"Daily 07:30–22:00",lat:12.7249,lng:99.9611,pid:"ChIJjwjI36kD_TARZz-2notBOSI",phone:"+66869804212"},
+  {g:"sip",name:"bOnnie on the Beach",cuisine:"Seaside café & bakery",known:"Bean bags on the sand, shio-pan & pastries, sea-view photos.",pet:["confirmed","Dog-friendly"],km:0.4,dir:"walk",hours:"Daily 09:00–19:00",lat:12.7283,lng:99.9639,pid:"ChIJmzfE-IQB_TARE-1ZqQbatRs",phone:"+66618603553"},
+  {g:"sip",name:"Velo Café",cuisine:"Specialty coffee",known:"Closest serious espresso — aromatic, air-conditioned, great non-dairy ice cream.",pet:["take","Air-con · takeaway"],km:0.8,dir:"walk",hours:"Daily 07:30–18:00 (wknd to 18:30)",lat:12.7177,lng:99.9633,pid:"ChIJOZW0AaAD_TARCgIExdfH1Io",phone:"+66819969992"},
+  {g:"sip",name:"Coffee@Sea",cuisine:"Beachfront café",known:"Sea-view afternoon-tea set, ice cream, quiet morning coffee.",pet:["take","Patio · takeaway"],km:2.4,dir:"N",min:6,hours:"Daily 09:00–18:00",lat:12.7462,lng:99.9677,pid:"ChIJn2McItID_TARYNf5jngGSPM",phone:"+6632709300"},
+  {g:"sip",name:"Le Cereste Café",cuisine:"Garden café · bakery",known:"Provençal / English-garden setting, lovely cakes & coffee.",pet:["confirmed","Dogs in air-con"],km:9,dir:"N",min:13,hours:"Daily 08:30–17:30",lat:12.7921,lng:99.9724,pid:"ChIJs0mPGNwD_TARgwvMq6vjAwc",phone:"+66922694325"},
+  {g:"sip",name:"Soulful Coffee Roasters",cuisine:"Coffee roastery · brunch",known:"In-house roasting, plant-based milks, beachfront brunch.",pet:["take","Patio · takeaway"],km:9,dir:"N",min:14,hours:"Daily 07:00–17:00",lat:12.7942,lng:99.9836,pid:"ChIJV_UsdrYD_TARnoEBu28IGa4",phone:"+66803623635"},
+  {g:"sip",name:"karma coffee @ cha-am beach",cuisine:"Beachfront café",known:"Friendly owner, banana smoothie, easy Cha-am beach vibe.",pet:["take","Patio · takeaway"],km:9,dir:"N",min:14,hours:"Daily ~08:30–18:00",lat:12.7947,lng:99.9837,pid:"ChIJNbot6ioD_TARHI55K-mTnV4",phone:"+66658195541"},
+  {g:"sip",name:"Aofcup.Coffee Cha-am Specialty",cuisine:"Specialty coffee",known:"Serious two-roast specialty bar — mornings only.",pet:["take","Takeaway"],km:11,dir:"N",min:15,hours:"Thu–Tue 06:30–15:30 (closed Wed)",lat:12.8096,lng:99.9793,pid:"ChIJ6bRsBLgd_TARgAvOv5t8EZc",phone:"+66652629263"},
+  {g:"sip",name:"BYON Coffee Bar",cuisine:"Coffee & bakery",known:"Home-roasted beans, upstairs bakery, steps from the beach.",pet:["take","Patio · takeaway"],km:12,dir:"N",min:17,hours:"Mon–Fri 09:30–17:00 · wknd from 08:00",mine:true,lat:12.8212,lng:99.9933,pid:"ChIJ6Vbuqhsb_TARWbNVRFtzhw8",phone:"+66815653908"},
+  {g:"sip",name:"After Morning Café",cuisine:"Brunch café",known:"Build-your-own breakfast plate, light/medium/dark roasts.",pet:["take","Patio · takeaway"],km:16,dir:"S",min:20,hours:"Fri–Tue 08:00–18:00 (closed Wed–Thu)",lat:12.5974,lng:99.9420,pid:"ChIJTzk4iPOr_TAR7TisViYq7qY",phone:"+66818808035"},
+  {g:"sip",name:"Molley Coffee Stand",cuisine:"Specialty · filter coffee",known:"Resident dog Bob, proper filter coffee, board games, homey corner.",pet:["confirmed","Dog-friendly"],km:17,dir:"S",min:22,hours:"Daily 08:30–17:00",lat:12.5866,lng:99.9529,pid:"ChIJ4Yua4y-r_TAROQdF2R3cxC0",phone:"+66819294716"},
+  {g:"sip",name:"CAFE DE KHOI",cuisine:"Café & brunch",known:"Nitro coffee, standout breakfast, even a great khao soi — at Bluport / InterContinental.",pet:["confirmed","Dogs indoor & out"],km:21,dir:"S",min:26,hours:"Daily 08:00–18:30",lat:12.5483,lng:99.9624,pid:"ChIJD6cGIzGr_TARZUuYlqFfvs8",phone:null},
+];
+
+const petClass={confirmed:"pet-confirmed",call:"pet-call",take:"pet-take"};
+const petGlyph={confirmed:"✓",call:"!",take:"☕"};
+
+function distLabel(p){
+  if(p.dir==="walk") return {cls:"dist walk",dir:"●",txt:p.km+" km · walk"};
+  const a=p.dir==="N"?"↑ N":"↓ S";
+  return {cls:"dist",dir:a,txt:p.km+" km · "+p.min+" min"};
+}
+function mapsUrl(p){
+  return "https://www.google.com/maps/search/?api=1&query="+p.lat+"%2C"+p.lng+"&query_place_id="+p.pid;
+}
+function cardHTML(p){
+  const d=distLabel(p);
+  const call=p.phone?`<a class="btn btn-call" href="tel:${p.phone}">Call</a>`:"";
+  const mine=p.mine?`<span class="mine">Your spot</span>`:"";
+  return `<article class="card" data-dir="${p.dir}">
+    <div class="top"><h4>${p.name}</h4>${mine}</div>
+    <div class="cuisine">${p.cuisine}</div>
+    <p class="known">${p.known}</p>
+    <div class="meta">
+      <span class="pill ${d.cls}"><span class="dir">${d.dir}</span> ${d.txt}</span>
+      <span class="pill ${petClass[p.pet[0]]}">${petGlyph[p.pet[0]]} ${p.pet[1]}</span>
+      <span class="pill hours">${p.hours}</span>
+    </div>
+    <div class="actions">
+      <a class="btn btn-map" href="${mapsUrl(p)}" target="_blank" rel="noopener">Open in Maps</a>
+      ${call}
+    </div>
+  </article>`;
+}
+
+function render(filter){
+  ["eat","sip"].forEach(g=>{
+    const items=PLACES.filter(p=>p.g===g && (filter==="all"||p.dir===filter));
+    document.getElementById("list-"+g).innerHTML=items.map(cardHTML).join("");
+    document.querySelector(`[data-count="${g}"]`).textContent=items.length+(g==="eat"?" places":" spots");
+    document.querySelector(`[data-empty="${g}"]`).style.display=items.length?"none":"block";
+  });
+}
+
+document.querySelectorAll(".chip").forEach(c=>{
+  c.addEventListener("click",()=>{
+    document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed","false"));
+    c.setAttribute("aria-pressed","true");
+    render(c.dataset.filter);
+  });
+});
+render("all");
+</script>
+</body>
+</html>
